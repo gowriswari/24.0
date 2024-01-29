@@ -55,7 +55,7 @@ view: users {
   dimension: date_test {
     type: date
     sql: ${created_date} ;;
-    html:{{ value | date: "%b %d, %y" }};;
+    html:{{ value | date: "%A, %B %e, %Y" }};;
 
   }
 
