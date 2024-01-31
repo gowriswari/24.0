@@ -30,10 +30,14 @@ view: order_items {
   }
 
   dimension: phone {
-    type: string
+   # type: string
+  type: number
     sql: ${TABLE}.phone ;;
   }
-
+ dimension: test1 {
+   type: string
+  sql: coalesce(${phones},${order_id}) ;;
+ }
   dimension: phones {
     type: string
     sql: ${TABLE}.phones ;;
