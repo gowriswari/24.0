@@ -30,13 +30,12 @@ view: order_items {
   }
 
   dimension: phone {
-   # type: string
-  type: number
+  type: string
     sql: ${TABLE}.phone ;;
   }
  dimension: test1 {
    type: string
-  sql: coalesce(${phones},${order_id}) ;;
+  sql: coalesce(${phones},${sale_price}) ;;
  }
   dimension: phones {
     type: string
@@ -52,7 +51,8 @@ view: order_items {
   }
 
   dimension: sale_price {
-    type: number
+    #type: number
+    type: string
     sql: ${TABLE}.sale_price ;;
   }
 
