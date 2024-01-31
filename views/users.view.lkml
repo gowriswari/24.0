@@ -52,6 +52,13 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: date_test {
+    type: date
+    sql: ${created_date} ;;
+    html:{{ value | date: "%A, %B %e, %Y" }};;
+
+  }
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
@@ -89,15 +96,15 @@ view: users {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	first_name,
-	last_name,
-	events.count,
-	orders.count,
-	saralooker.count,
-	sindhu.count,
-	user_data.count
-	]
+  id,
+  first_name,
+  last_name,
+  events.count,
+  orders.count,
+  saralooker.count,
+  sindhu.count,
+  user_data.count
+  ]
   }
 
 }
