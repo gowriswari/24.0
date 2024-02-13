@@ -51,8 +51,8 @@ view: order_items {
   }
 
   dimension: sale_price {
-    #type: number
-    type: string
+    type: number
+    #type: string
     sql: ${TABLE}.sale_price ;;
   }
 
