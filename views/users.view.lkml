@@ -38,6 +38,18 @@ view: users {
     sql: ${TABLE}.city ;;
   }
 
+  dimension_group: encounter_start {
+    description: "At what time did the encounter start?"
+    type: time
+    sql:${TABLE}.created_at;;
+    #timeframes: [date, month, month_name, month_num, quarter, quarter_of_year, week, week_of_year, year, time]
+  }
+
+  dimension: is_abandoned {
+    description: "Flag when call is abandoned - defined as call abandoned in queue after 30 seconds"
+    type: yesno
+    sql: ${users.gender}='f' AND ${age}>30 ;;
+  }
   dimension: country {
     type: string
     map_layer_name: countries
