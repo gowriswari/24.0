@@ -38,6 +38,21 @@ view: users {
     sql: ${TABLE}.city ;;
   }
 
+dimension: testtt {
+  type:string
+  case: {
+    when: {
+      sql: ${users.gender} IN ("f","m");;
+      label: "In test"
+    }
+    # Possibly more when statements
+    else: "Null"
+  }
+  alpha_sort:  yes
+}
+
+
+
   dimension_group: encounter_start {
     description: "At what time did the encounter start?"
     type: time

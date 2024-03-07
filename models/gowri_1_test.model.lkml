@@ -4,6 +4,7 @@ connection: "thelook"
 # include all the views
 include: "/views/**/*.view.lkml"
 include: "/testing_locale.dashboard.lookml"
+#include: "/explores/order_items.explore.lkml"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
@@ -12,7 +13,10 @@ datagroup: gowri_1_test_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: gowri_1_test_default_datagroup
+datagroup: gowri_1_test_default_datagroup1 {
+  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  max_cache_age: "2 hours"
+}
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -22,6 +26,7 @@ persist_with: gowri_1_test_default_datagroup
 # To see the Explore you’re building, navigate to the Explore menu and select an Explore under "Gowri 1 Test"
 
 explore: billion_orders {
+  persist_with: gowri_1_test_default_datagroup1
   join: orders {
     type: left_outer
     sql_on: ${billion_orders.order_id} = ${orders.id} ;;
@@ -45,9 +50,15 @@ explore: day_of_week {}
 
 explore: dept {}
 
-explore: dummy {}
+explore: dummy {
+  persist_with: gowri_1_test_default_datagroup
+}
 
 explore: employees {}
+
+explore: native_derived1 {}
+
+explore: sql_derived1 {}
 
 explore: events {
   join: users {

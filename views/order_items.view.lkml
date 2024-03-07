@@ -1,4 +1,5 @@
 # The name of this view in Looker is "Order Items"
+#include: "/views/order_items.view.lkml"
 view: order_items {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
@@ -47,6 +48,12 @@ view: order_items {
   dimension_group: returned {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.returned_at ;;
+  }
+
+  dimension: test {
+    type: date_raw
+    convert_tz: no
     sql: ${TABLE}.returned_at ;;
   }
 
