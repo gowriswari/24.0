@@ -1,4 +1,5 @@
 # The name of this view in Looker is "Order Items"
+#include: "/views/order_items.view.lkml"
 view: order_items {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
@@ -30,11 +31,14 @@ view: order_items {
   }
 
   dimension: phone {
-    type: string
+  type: string
     sql: ${TABLE}.phone ;;
   }
-
-  dimension: phones {
+ dimension: test1 {
+   type: string
+  sql: coalesce(${phone},${sale_price}) ;;
+ }
+  dimension: phones{
     type: string
     sql: ${TABLE}.phones ;;
   }
@@ -47,14 +51,27 @@ view: order_items {
     sql: ${TABLE}.returned_at ;;
   }
 
-  dimension: sale_price {
+  dimension: test {
+    type: date_raw
+    convert_tz: no
+    sql: ${TABLE}.returned_at ;;
+  }
+
+  dimension: sale_price{
     type: number
+    #type: string
     sql: ${TABLE}.sale_price ;;
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
+  dimension_group: encounter_start {
+    description: "At what time did the encounter start?"
+    type: time
+    sql: ${TABLE}.returned_at;;
+   timeframes: [date, month, month_name, month_num, quarter, quarter_of_year, week, week_of_year, year, time]
+  }
 
   measure: total_sale_price {
     type: sum
