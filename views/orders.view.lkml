@@ -25,6 +25,31 @@ view: orders {
     # A dimension is a groupable field that can be used to filter query results.
     # This dimension will be called "Status" in Explore.
 
+
+
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "Break down by Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Break down by Month"
+      value: "month"
+    }
+  }
+
+  dimension: date {
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${created_date}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
@@ -43,18 +68,18 @@ view: orders {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	users.id,
-	users.first_name,
-	users.last_name,
-	billion_orders.count,
-	fakeorders.count,
-	hundred_million_orders.count,
-	hundred_million_orders_wide.count,
-	order_items.count,
-	order_items_vijaya.count,
-	ten_million_orders.count
-	]
+  id,
+  users.id,
+  users.first_name,
+  users.last_name,
+  billion_orders.count,
+  fakeorders.count,
+  hundred_million_orders.count,
+  hundred_million_orders_wide.count,
+  order_items.count,
+  order_items_vijaya.count,
+  ten_million_orders.count
+  ]
   }
 
 }

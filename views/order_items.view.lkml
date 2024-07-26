@@ -43,7 +43,7 @@ view: order_items {
 
   dimension_group: returned {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter,fiscal_month_num, fiscal_year, fiscal_quarter, year]
     sql: ${TABLE}.returned_at ;;
   }
 
