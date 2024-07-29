@@ -27,33 +27,28 @@ view: orders {
 
 
 
-  parameter: date_granularity {
-    type: unquoted
-    allowed_value: {
-      label: "Break down by Day"
-      value: "day"
-    }
-    allowed_value: {
-      label: "Break down by Month"
-      value: "month"
-    }
-  }
+  # parameter: date_granularity {
+  #   type: unquoted
+  #   allowed_value: {
+  #     label: "Break down by Day"
+  #     value: "day"
+  #   }
+  #   allowed_value: {
+  #     label: "Break down by Month"
+  #     value: "month"
+  #   }
+  # }
 
-  dimension: date {
-    sql:
-    {% if date_granularity._parameter_value == 'day' %}
-      ${created_date}
-    {% elsif date_granularity._parameter_value == 'month' %}
-      ${created_month}
-    {% else %}
-      ${created_date}
-    {% endif %};;
-  }
-
-  dimension: status {
-    type: string
-    sql: ${TABLE}.status ;;
-  }
+  # dimension: date {
+  #   sql:
+  #   {% if date_granularity._parameter_value == 'day' %}
+  #     ${created_date}
+  #   {% elsif date_granularity._parameter_value == 'month' %}
+  #     ${created_month}
+  #   {% else %}
+  #     ${created_date}
+  #   {% endif %};;
+  # }
 
 
   dimension: user_id {

@@ -53,7 +53,7 @@ view: order_items {
 
   dimension: test {
     type: date_raw
-    convert_tz: no
+    # convert_tz: no
     sql: ${TABLE}.returned_at ;;
   }
 

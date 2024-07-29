@@ -115,6 +115,53 @@ dimension: testtt {
     type: zipcode
     sql: ${TABLE}.zip ;;
   }
+
+
+
+
+  dimension: status_of_parameter {
+    # label: "{% if view_label._parameter_value == 'PENDING' %} Pening
+    #             {% elsif view_label == 'complete' %}  Complete
+    #             {% else %} zone
+    #             {% endif %}"
+    type: string
+    sql: {% if alerts_parameter._parameter_value == 'JOHN' %}
+          ${first_name}
+          {% elsif alerts_parameter._parameter_value == 'TEXAS' %}
+          ${state}
+          {% elsif alerts_parameter._parameter_value == 'USA' %}
+          ${country}
+          {% elsif alerts_parameter._parameter_value == 'MAY' %}
+          ${last_name}
+          {% else %}
+          ${country}
+          {% endif %};;
+  }
+
+  parameter: alerts_parameter {
+    type: unquoted
+    default_value: "USA"
+
+    allowed_value: {
+      label: "john"
+      value: "JOHN"
+    }
+    allowed_value: {
+      label: "texas"
+      value: "TEXAS"
+    }
+    allowed_value: {
+      label: "usa"
+      value: "USA"
+    }
+
+    allowed_value: {
+      label: "may"
+      value: "MAY"
+    }
+  }
+
+
   measure: count {
     type: count
     drill_fields: [detail*]
