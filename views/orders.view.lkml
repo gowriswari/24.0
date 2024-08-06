@@ -51,8 +51,8 @@ view: orders {
   # }
 
   dimension: status {
-    label: "{% if _view._name == 'orders' %}nameordersgrouping
-              {% elsif _view._name == 'users' %}namecomplete
+    label: "{% if _view._name == 'users' %}nameordersgrouping
+              {% elsif _view._name == 'events' %}namecomplete
               {% else %}namecancelled
               {% endif %}"
     type: string
