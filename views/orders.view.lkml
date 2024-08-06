@@ -50,6 +50,35 @@ view: orders {
   #   {% endif %};;
   # }
 
+  dimension: status {
+    label: "{% if _view._name == 'orders' %}nameordersgrouping
+              {% elsif _view._name == 'users' %}namecomplete
+              {% else %}namecancelled
+              {% endif %}"
+    type: string
+    sql: ${TABLE}.status ;;
+    }
+
+  dimension: status1 {
+    # label: "{% if _view._name == 'orders' %} nameorders
+    # {% elsif _view._name == 'users' %}  namecomplete
+    # {% else %} namecancelled
+    # {% endif %}"
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
+    # parameter: name{
+    #   type: unquoted
+    #   allowed_value: {
+    #     label: "ORDERS"
+    #     value: "orders"
+    #   }
+    #   allowed_value: {
+    #     label: "USERS"
+    #     value: "users"
+    #   }
+    # }
 
   dimension: user_id {
     type: number
