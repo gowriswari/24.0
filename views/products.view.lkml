@@ -66,4 +66,17 @@ view: products {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
   }
+
+  measure: testing_HTML {
+    type: number
+    sql: (${id}/${rank}) ;;
+    html:
+    # {% if value > 0 and Brand._value == "106Shades" %}
+    # <span style="color: red; font-size: 100%">{{ rendered_value }}</span>
+    # {% elsif value > 0 and Brand._value == "Bosca" %}
+    # <span style="color: green; font-size: 100%">{{ rendered_value }}</span>
+    # {% elsif value > 0 and Brand._value == "Cameo" %}
+    # <span style="color: red; font-size: 100%">{{ rendered_value }}</span>
+    # {% endif %};;
+  }
 }

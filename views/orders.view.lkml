@@ -52,9 +52,9 @@ view: orders {
 
   dimension: status {
     label: "{% if _view._name == 'users' %}nameordersgrouping
-              {% elsif _view._name == 'events' %}namecomplete
-              {% else %}namecancelled
-              {% endif %}"
+    {% elsif _view._name == 'orders' %}namecomplete
+    {% else %}namecancelled
+    {% endif -%}"
     type: string
     sql: ${TABLE}.status ;;
     }
